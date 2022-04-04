@@ -32,7 +32,7 @@ Non-exhaustive, if there's a question you'd like answered, please add as an issu
         * Note: the approach for the execution layer is now confirmed to be [EIP-4895: Beacon chain push withdrawals as operations](https://eips.ethereum.org/EIPS/eip-4895)
     * Withdrawals don't "go through" the deposit contract: they are pushed by the Beacon Chain back to the EL and get credited in the same way as miner rewards currently do. This means that calclating circulating supply will be slightly more complex as the deposit contract's balance will not "decrease" with withdrawals. 
 * How do withdraw keys work?  Using the eth2-deposit-cli defaults you don't automatically generate a BLS withdraw key.  How will this key work?  Will you just take the 0th index of the derivation path?
-    *  **TBA**
+    *  EIP-2334 defines this [here](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters)
 *  If you specify an eth1 withdraw key, can you only withdraw to that key's address? Or is it simply used for signing a withdraw transaction, and the eth you can withdraw to any specified address?
     *  You can withdraw to the address directly
 *  Suppose you use a BLS key to withdraw, where will the eth go?  My understanding is that the consensus layer will not have state or accounts.  As such, do you simply specify an execution layer address to send withdrawn eth to?  Or will the consensus layer actually have state?
