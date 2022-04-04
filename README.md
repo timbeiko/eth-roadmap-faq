@@ -2,6 +2,8 @@
 
 Non-exhaustive, if there's a question you'd like answered, please add as an issue/PR. Feel free to submit Q&As as a PR, too. 
 
+Full disclaimer: this current version was typed in <1h, and will likely have typos & minor inaccuracies.
+
 ## Merge
 
 * What actually went on with the [Kiln merge](https://blog.ethereum.org/2022/03/14/kiln-merge-testnet/)?  
