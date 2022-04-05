@@ -36,11 +36,9 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 * How do withdraw keys work?  Using the eth2-deposit-cli defaults you don't automatically generate a BLS withdraw key.  How will this key work?  Will you just take the 0th index of the derivation path?
     *  EIP-2334 defines this [here](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters)
 *  If you specify an eth1 withdraw key, can you only withdraw to that key's address? Or is it simply used for signing a withdraw transaction, and the eth you can withdraw to any specified address?
-    *  You can withdraw to the address directly
+    *  To withdraw ETH from the beacon chain, you **MUST** specify an eth1 address as the "target" recipient. you will not need to sign anything from this account as the withdraw will happen automatically from the execution layer perspective. When the withdrawal happens, it will look like the target account suddenly has the extra ETH in the account balance in the post-state of the block containing the withdraw.
 *  Suppose you use a BLS key to withdraw, where will the eth go?  My understanding is that the consensus layer will not have state or accounts.  As such, do you simply specify an execution layer address to send withdrawn eth to?  Or will the consensus layer actually have state?
-    *  You specify an execution-layer address to withdraw to, and an amount to withdraw in Gwei, see [the spec](https://github.com/ethereum/consensus-specs/blob/dev/specs/capella/beacon-chain.md#withdrawal)
-*  If you specify an eth1 withdraw key, can you only withdraw to that key's address? Or is it simply used for signing a withdraw transaction, and the eth you can withdraw to any specified address?
-    * **TBA**
+    *  You specify an execution-layer address to withdraw to, and an amount to withdraw in Gwei, see [the spec](https://github.com/ethereum/consensus-specs/blob/dev/specs/capella/beacon-chain.md#withdrawal). To be clear, you *cannot* withdraw with a BLS withdrawal key. We will have an operation to change your credentials on the consensus layer coming in the fork after the Merge.
 
 
 ## Sharding
