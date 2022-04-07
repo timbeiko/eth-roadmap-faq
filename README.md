@@ -14,7 +14,7 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 * It seems like the Kiln testnet beacon chain has state and smart contracts. This runs contrary to what the http://ethereum.org suggests about the beacon chain.  Is this simply because I am confused by the block explorers?
     * Post-merge, Beacon blocks contain the transactional payload that current PoW blocks contain. We call this the `ExecutionPayload` in the specs. Here's a diagram which illustrates what it looks like: 
     * ![](https://i.imgur.com/ImOX35U.png)
-    * On the above, the first two blocks on PoW and the Beacon Chain are pre-merge, and the last two are after The Merge. Once the last PoW block is produced, subsequent Beacon Chain blocks include the transactional data. Longer post about this [here])(https://hackmd.io/@timbeiko/acd/https%3A%2F%2Ftim.mirror.xyz%2FsR23jU02we6zXRgsF_oTUkttL83S3vyn05vJWnnp-Lc%3Fdisplay%3Diframe)
+    * On the above, the first two blocks on PoW and the Beacon Chain are pre-merge, and the last two are after The Merge. Once the last PoW block is produced, subsequent Beacon Chain blocks include the transactional data. Longer post about this [here](https://hackmd.io/@timbeiko/acd/https%3A%2F%2Ftim.mirror.xyz%2FsR23jU02we6zXRgsF_oTUkttL83S3vyn05vJWnnp-Lc%3Fdisplay%3Diframe)
 * At a high level, what does the block processing flow look like, post-merge? 
     1. A validator is elected to propose a block
     2. This validator asks its execution layer (EL), via the [Engine API](https://github.com/ethereum/execution-apis/tree/main/src/engine), to send him an `ExecutionPayload`
