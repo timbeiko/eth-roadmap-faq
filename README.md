@@ -27,6 +27,24 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 * What is the testing process like for The Merge? 
     * We are running several testing efforts in parallel. A list is available [here](https://github.com/ethereum/pm/blob/master/Merge/mainnet-readiness.md#testing) 
 
+### Shadow Forking
+
+* What is Shadow Forking? 
+    * A Shadow fork is when a small number of nodes are configured to fork off from an Ethereum network at a certain point. In the context of The Merge, we do this by launching nodes which are set to run through The Merge at an earlier point than the entire network. This allows us to test how the upgrade would have happened in similar conditions to the shadow-forked network, but without the vast majority of the nodes being aware this has happened. After the shadow fork, transaction valid on the main chain can get replayed on the forked chain as well, simulating the throughput of the original network. [@parithosh_j has a good tweet thread with more details](https://twitter.com/parithosh_j/status/1513129881927884801)
+    * The diagram below, from the linked thread, shows what the network looks like after a shadow fork:   ![FP-tJYhXwAI57Cm](https://user-images.githubusercontent.com/9390255/162835363-d5b70366-c9a7-460e-b881-321cae2c72e6.png)
+        * The rop row of Goerli blocks shows a node on the canonical chain, which are not aware of the shadow fork. 
+        * The middle row of Goeli blocks shows a node on the shadow-forked chain, which has a modified configuration telling it to fork once TTD is hit
+        * The bottom row shows a Beacon Chain which was launched for the purposes of the shadow fork only: it will provide consensus to the chain when TTD is hit. 
+        * After TTD is hit, the nodes on the canonical chain continue producing blocks normally: nothing has happened "for them". 
+        * After TTD is hit, nodes with the modified configuration fork off and run through The Merge. The first post-merge block is produced by the next validator in the Beacon Chain. While this block can contain any transaction seen on the canonical chain, the exact transactions included, or their ordering, is not necessarily the same as on the canonical chain. 
+* Why are Shadow Forks useful?
+    * Shadow Forks allow us to see how nodes react when The Merge happens using only a small number of nodes and without disrupting the canonical chain. Shadow Forks give us a more realistic environment to test in than launching new testnets, because existing testnets already have transactions happening organically on them, and a large state size & block history which put node under more stress than new testnets. They therefore allow us to get "real world" performance metrics on nodes, without potentially affecting the canonical network's operations. 
+* Can you Shadow Fork mainnet? 
+    * Yes, and we now have! Shadow Forking mainnet is incredibly useful because it shows us how nodes react in the harshest possible conditions: when their state and history is large and transactions are the most complex. After a mainnet shadow fork, we can also test how stable nodes are, how well they sync, etc. when trying to join the forked network. This gives us data not only on the transition itself, but also on how new nodes behave when they join the network in a post-merge state. 
+* What stage in The Process™️ are Shadow Forks?    
+    * Shadow forks help us increase our confidence that implementations work as expected. Once they go smoothly across all implementations, we can then confidently run existing testnets through The Merge. It is worth noting that the nodes in Shadow Forks are controlled by a small set of operators: some public testnets have much broader validator sets. Once testnets are upgraded and stable, then we can plan for The Merge to happen on mainnet.  
+
+
 ## Withdrawals
 
 * How will staking withdraws actually work?  I have seen a couple specs floating around, but I don't see anything with obvious consensus on it.  If you look at the deposit contract, there is literally one write method: deposit().  There is simply no logic for withdraw
@@ -43,7 +61,7 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 
 ## Sharding
 
-* Third topic: sharding.  Is there any consensus on what sharding will look like in the future?  It seems like execution sharding has been totally abandoned in favor of a rollup-centric future.
+* Is there any consensus on what sharding will look like in the future?  It seems like execution sharding has been totally abandoned in favor of a rollup-centric future.
     * Execution sharding has been "deprecated" in favor of rollup-centric scaling of execution. Data sharding is now the main approach being researched and implemented. 
 * How do rollups actually work post merge?  Do they still sit on top of ETH1 / the execution layer?  Or will they sit directly on top of the consensus layer?  
     * They keep working as they do today, deployed on the execution layer, but can leverage consensus layer finality.
