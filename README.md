@@ -50,7 +50,7 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 * When will The Merge happen? 
     * There is no official date for The Merge yet. A date will only be set once client teams are confident that the software implementations have been thoroughly tested and are bug-free. Any date announcement will be communicated on blog.ethereum.org 
 * What needs to happen before The Merge?
-    * As of April 2021, all client teams have in-progress implementations for The Merge, which have been tested by test suites, the launch of new testnets and shadow forks. 
+    * As of April 2022, all client teams have in-progress implementations for The Merge, which have been tested by test suites, the launch of new testnets and shadow forks. 
     * Shadow forks, run against both existing testnets and the Ethereum mainnet, have revealed implementation issues in clients. Teams are now fixing these and regularly re-running shadow forks to test fixes. 
     * Once clients work without issues during shadow forks, then the existing Ethereum testnets (Ropsten, Goerli, etc.) will be run through The Merge. An announcement will be made on blog.ethereum.org at this point.
     * Once testnets have successfully upgraded, and remain stable, **then** a time will be set for the upgrade to happen on the Ethereum mainnet. 
