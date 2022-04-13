@@ -45,6 +45,26 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 * What stage in The Process™️ are Shadow Forks?    
     * Shadow forks help us increase our confidence that implementations work as expected. Once they go smoothly across all implementations, we can then confidently run existing testnets through The Merge. It is worth noting that the nodes in Shadow Forks are controlled by a small set of operators: some public testnets have much broader validator sets. Once testnets are upgraded and stable, then we can plan for The Merge to happen on mainnet.  
 
+### Merge Timelines 
+
+* When will The Merge happen? 
+    * There is no official date for The Merge yet. A date will only be set once client teams are confident that the software implementations have been thoroughly tested and are bug-free. Any date announcement will be communicated on blog.ethereum.org 
+* What needs to happen before The Merge?
+    * As of April 2021, all client teams have in-progress implementations for The Merge, which have been tested by test suites, the launch of new testnets and shadow forks. 
+    * Shadow forks, run against both existing testnets and the Ethereum mainnet, have revealed implementation issues in clients. Teams are now fixing these and regularly re-running shadow forks to test fixes. 
+    * Once clients work without issues during shadow forks, then the existing Ethereum testnets (Ropsten, Goerli, etc.) will be run through The Merge. An announcement will be made on blog.ethereum.org at this point.
+    * Once testnets have successfully upgraded, and remain stable, **then** a time will be set for the upgrade to happen on the Ethereum mainnet. 
+        * The Merge, unlike previous Ethereum upgrades, will not be triggered by a block time. Instead, it will be triggered by a total difficulty value. Given these are harder to estimate than block times, the delay between choosing a time for The Merge and it going live on the network may be slightly shorter than prior Ethereum upgrades.
+    * A list of tasks to be completed before the mainnet upgrade can be found [here](https://github.com/ethereum/pm/blob/master/Merge/mainnet-readiness.md). 
+* How does the difficulty bomb affect the timeline?
+    * The difficulty bomb is expected to start being noticeable on the Ethereum network around May, to start noticeably contributing to block times in June/July, and to make blocks unbearably (read 15-20 seconds) slow by August. Its progress is being tracked [here](https://ethresear.ch/t/blocks-per-week-as-an-indicator-of-the-difficulty-bomb/12120). 
+    * If client developers do not think they can deploy The Merge to mainnet before block times are slowed too much, it will need to be delayed again. Two options are possible to delay the bomb:
+        * **Combine Merge & Bomb Delay:** if we only need to delay the bomb a few weeks, we can combine a bomb delay with client releases for The Merge. The way this would work is that these releases would delay the bomb at a certain block, restoring 13s block times, and then activate The Merge shorly after. Because The Merge needs to happen fairly close to client releases, this scenario is only helpful if we want to delay the bomb by a few weeks.
+        * **Separate Bomb delay:** if we do not expect to activate The Merge on the Ethereum mainnet before block times become unbearably slow, then a separate network upgrade, which only delays the difficulty bomb, will need to happen prior to The Merge. Note that the time by which we delay the difficulty bomb is independent of when The Merge happens. For example, if we delayed the bomb by 6 months, we could merge before that. Similarly, if we delayed the bomb 3 months and found a major issue right before it goes off again, another bomb delay would be considered. 
+* How can I help The Merge happen quicker?
+    * If you run a node, either as an infrastructure provider, validator, or hobbyist, make sure to test your current setup on [Kiln](https://blog.ethereum.org/2022/03/14/kiln-merge-testnet/) to ensure it works as expected. Trying the software in many environments, with many set of eyes is the best way to ensure that we catch bugs early in the process.
+
+
 
 ## Withdrawals
 
