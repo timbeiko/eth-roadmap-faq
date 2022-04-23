@@ -83,7 +83,11 @@ Full disclaimer: this current version was typed in <1h, and will likely have typ
 ## Sharding
 
 * Is there any consensus on what sharding will look like in the future?  It seems like execution sharding has been totally abandoned in favor of a rollup-centric future.
-    * Execution sharding has been "deprecated" in favor of rollup-centric scaling of execution. Data sharding is now the main approach being researched and implemented. 
+    * Execution sharding has been deprioritized in favor of rollup-centric scaling of execution. Data sharding is now the main approach being researched and implemented. The [rollup-centric roadmap](https://ethereum-magicians.org/t/a-rollup-centric-ethereum-roadmap/4698) frees two birds with one key: 
+    
+        (1) rollups: they provide immediate scalability relief to L1. One can think of L1's higher data throuput and the data availability sampling (DAS) machinery as the fuel that powers rollups aka non-enshrined shards.
+
+        (2) zkEVM: in the original sharding roadmap, where there would have been 64 execution shards, the network would be fraud-proof-secured. That means the beacon chain accepts fraud claims about invalid shard blocks, and reverts the chain if neccessary slashing the guilty validators and rewarding the whistleblower. This would have taken a long time to implement (the entire network must revert back to a state prior to the fraud). It also means the network would be making synchrony assumptions that have nasty edge cases during the "leeway period" (time measured in epochs before a new finality checkpoint is finalized). Sharded execution would however (a) be much easier to implement and (b) without these syncrony assumptions if execution were validity proven, i.e. each execution shard is running zkEVM. But zkEVM R&D is still maturing. So, the rollup-centric roadmap gives this zkEVM R&D some breating room to mature and get tested. Multiple zkEVM implementations are currently being worked on by projects like Scroll, Hermez, zkSync and the EF's own zkEVM research group.  
 * How do rollups actually work post merge?  Do they still sit on top of ETH1 / the execution layer?  Or will they sit directly on top of the consensus layer?  
     * They keep working as they do today, deployed on the execution layer, but can leverage consensus layer finality.
 * Where does data sharding currently sit? What actually is data sharding?  Is it just a way of solving the Data Availability problem as rollups become more popular?
